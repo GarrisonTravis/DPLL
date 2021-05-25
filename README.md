@@ -12,3 +12,7 @@ The knowledge base for the given problem is represented in marbles.cnf and is ex
   - The first bucket has a green label, the second bucket has a red label, and the third bucket has a both label.
 
 The program uses DPLL and marbles.cnf to generate a complete model for the problem where the truth values will show which bucket contains which color of marbles.
+
+#Heuristic
+
+In order to make DPLL more effiecient, I used the Unit-Clause heuristic. 
