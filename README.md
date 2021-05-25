@@ -13,9 +13,6 @@ The knowledge base for the given problem is represented in marbles.cnf and is ex
 
 The program uses DPLL and marbles.cnf to generate a complete model for the problem where the truth values will show which bucket contains which color of marbles.
 
-### Usage
-
-
 ### Heuristic
 
-In order to make DPLL more effiecient, I used the Unit-Clause heuristic. 
+In order to make DPLL more effiecient, I used the Unit-Clause heuristic. The Unit-Clause heuristic checks checks each clause in the knowledge base with the current model, and if there is a clause where all propositions are false except one, which is unknown, then that last unknown proposition must be true.
