@@ -1,0 +1,92 @@
+#Each box has one of 3 labels
+(or L1R L1G L1B)
+(or L2R L2G L2B)
+(or L3R L3G L3B)
+
+#Each box has exactly one label
+(or (not L1R) (not L1G))
+(or (not L1R) (not L1B))
+(or (not L1G) (not L1B))
+(or (not L2R) (not L2G))
+(or (not L2R) (not L2B))
+(or (not L2G) (not L2B))
+(or (not L3R) (not L3G))
+(or (not L3R) (not L3B))
+(or (not L3G) (not L3B))
+
+#Each box has a different label
+(or (not L1R) (not L2R))
+(or (not L1R) (not L3R))
+(or (not L2R) (not L3R))
+(or (not L1G) (not L2G))
+(or (not L1G) (not L3G))
+(or (not L2G) (not L3G))
+(or (not L1B) (not L2B))
+(or (not L1B) (not L3B))
+(or (not L2B) (not L3B))
+
+#Each label is incorrect
+(or (not L1R) (not C1R))
+(or (not L1G) (not C1G))
+(or (not L1B) (not C1B))
+(or (not L2R) (not C2R))
+(or (not L2G) (not C2G))
+(or (not L2B) (not C2B))
+(or (not L3R) (not C3R))
+(or (not L3G) (not C3G))
+(or (not L3B) (not C3B))
+
+#Each box contains one of 3 sets of colors
+(or C1R C1G C1B)
+(or C2R C2G C2B)
+(or C3R C3G C3B)
+
+#Each box contains exactly one of the color sets
+(or (not C1R) (not C1G))
+(or (not C1R) (not C1B))
+(or (not C1G) (not C1B))
+(or (not C2R) (not C2G))
+(or (not C2R) (not C2B))
+(or (not C2G) (not C2B))
+(or (not C3R) (not C3G))
+(or (not C3R) (not C3B))
+(or (not C3G) (not C3B))
+
+#Each box contains a different color set
+(or (not C1R) (not C2R))
+(or (not C1R) (not C3R))
+(or (not C2R) (not C3R))
+(or (not C1G) (not C2G))
+(or (not C1G) (not C3G))
+(or (not C2G) (not C3G))
+(or (not C1B) (not C2B))
+(or (not C1B) (not C3B))
+(or (not C2B) (not C3B))
+
+#If Red is observed, then it must contain Red or both
+(or (not O1R) C1R C1B)
+(or (not O2R) C2R C2B)
+(or (not O3R) C3R C3B)
+
+#If Green is observed, then it must contain Green or both
+(or (not O1G) C1G C1B)
+(or (not O2G) C2G C2B)
+(or (not O3G) C3G C3B)
+
+#If Red is observed, then can't contain Green
+(or (not O1R) (not C1G))
+(or (not O2R) (not C2G))
+(or (not O3R) (not C3G))
+
+#If Green is observed, then can't contain Red
+(or (not O1G) (not C1R))
+(or (not O2G) (not C2R))
+(or (not O3G) (not C3R))
+
+#Initial Facts
+(or O1R)
+(or O2G)
+(or O3R)
+(or L1G)
+(or L2R)
+(or L3B)
