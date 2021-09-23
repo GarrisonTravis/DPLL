@@ -7,7 +7,9 @@
 #include <string>
 #include <cstring>
 #include <stdlib.h>
-#include "KBgeneration.h"
+
+using namespace std;
+
 
 typedef map<string, char> MODEL;
 
@@ -32,7 +34,7 @@ vector<string> tokenize(string str) {
 				token += str[i];
 				i++;
 			}
-			
+
 			tokens.push_back(token);
 			i--;
 		}
@@ -207,140 +209,27 @@ int main(int argc, char* argv[]) {
 
 	vector<string> KB;
 	MODEL* model;
-	bool unitOp = false;
-	bool genOp = false;
+	bool unitOp = true;
 
-	//Parse command line arguments
-	//Normal Operation with unit clause option
-	/*if (argc == 2) {
-		unitOp = true;
-
-		//Mapcolor
-		if (strstr(argv[1], "mapcolor") != NULL) {
-			KB = load_kb(argv[1]);
-
-			model = new MODEL({ {"NSWR", '?'}, {"NSWG", '?'}, {"NSWB", '?'}, {"NTR", '?'}, {"NTG", '?'}, {"NTB", '?'}, {"QR", '?'},
-										 {"QG", '?'}, {"QB", '?'}, {"SAR", '?'}, {"SAG", '?'}, {"SAB", '?'}, {"TR", '?'}, {"TG", '?'},
-										 {"TB", '?'}, {"VR", '?'}, {"VG", '?'}, {"VB", '?'}, {"WAR", '?'}, {"WAG", '?'}, {"WAB", '?'} });
-		}
-		//N-Queens
-		else if (strstr(argv[1], "queen") != NULL) {
-
-			KB = load_kb(argv[1]);
-			model = new MODEL;
-
-			//Generate N-Queens Model
-			for (int i = 1; i <= atoi(&argv[1][0]); i++) {
-				for (int j = 1; j <= atoi(&argv[1][0]); j++) {
-					model->insert({ "Q" + to_string(j) + to_string(i), '?' });
-				}
-			}
-		}
-		else {
-			cout << "Usage: DPLL <filename> [-unit] || [-gen]" << endl;
-			exit(1);
-		}
-	}
-	//-unit || -gen
-	else if (argc == 3) {
-		//Operation without unit clause
-		if (strcmp(argv[2], "-unit") == 0) {
-
-			//Mapcolor
-			if (strstr(argv[1], "mapcolor") != NULL) {
-				KB = load_kb(argv[1]);
-
-				model = new MODEL({ {"NSWR", '?'}, {"NSWG", '?'}, {"NSWB", '?'}, {"NTR", '?'}, {"NTG", '?'}, {"NTB", '?'}, {"QR", '?'},
-											 {"QG", '?'}, {"QB", '?'}, {"SAR", '?'}, {"SAG", '?'}, {"SAB", '?'}, {"TR", '?'}, {"TG", '?'},
-											 {"TB", '?'}, {"VR", '?'}, {"VG", '?'}, {"VB", '?'}, {"WAR", '?'}, {"WAG", '?'}, {"WAB", '?'} });
-			}
-			//N-Queens
-			else if (strstr(argv[1], "queen") != NULL) {
-
-				KB = load_kb(argv[1]);
-				model = new MODEL;
-
-				//Generate N-Queens Model
-				for (int i = 1; i <= atoi(&argv[1][0]); i++) {
-					for (int j = 1; j <= atoi(&argv[1][0]); j++) {
-						model->insert({ "Q" + to_string(j) + to_string(i), '?' });
-					}
-				}
-			}
-			//Usage Error
-			else {
-				cout << "Usage: DPLL <filename> [-unit] || [-gen]" << endl;
-				exit(1);
-			}
-		}
-		//Generate option included, so generate KB into the given file
-		else if (strcmp(argv[2], "-gen") == 0) {
-			genOp = true;
-
-			//Generate the map color knowledge base
-			if (strstr(argv[1], "mapcolor") != NULL) {
-				generateMapColorKB(argv[1]);
-				cout << "Successfully generated mapcolor KB with filename = " << argv[1] << endl;
-				exit(0);
-			}
-			//Generate the N-Queens knowledge base
-			else if (strstr(argv[1], "queen") != NULL) {
-				if (isdigit(argv[1][0])) {
-					char* n = &argv[1][0];
-					generateNQueensKB(argv[1], atoi(n));
-					cout << "Successfully generated " << argv[1][0] << "-Queens KB with filename " << argv[1] << endl;
-					exit(0);
-				}
-				else {
-					cout << "Usage: DPLL <filename> [-unit] || [-gen]" << endl;
-					exit(1);
-				}
-			}
-			else {
-				cout << "Usage: DPLL <filename> [-unit] || [-gen]" << endl;
-				exit(1);
-			}
-		}
-		else {
-			cout << "Usage: DPLL <filename> [-unit] || [-gen]" << endl;
-			exit(1);
-		}
-	}*/
-	if (argc == 2) {
-		unitOp = true;
-
-		if (strstr(argv[1], "marbles") != NULL) {
-
-			//Open the knowledge base file
-			ifstream input(argv[1]);
-			if (!input.is_open()) {
-				cout << "Error opening file!" << endl;
-				exit(1);
-			}
-
-			//Input each line of the knowledge base file into a vector
-			string line;
-			while (getline(input, line)) {
-				if (line.size() != 0 && line[0] != '#')
-					KB.push_back(line);
-			}
-
-			//Initial unknown model
-			model = new MODEL({ {"L1R", '?'}, {"L1G",  '?'}, {"L1B", '?'}, {"L2R", '?'}, {"L2G",  '?'}, {"L2B", '?'}, {"L3R", '?'}, {"L3G",  '?'}, {"L3B", '?'},
-								{"O1R", '?'}, {"O1G",  '?'}, {"O2R", '?'}, {"O2G",  '?'}, {"O3R", '?'}, {"O3G",  '?'},
-								{"C1R", '?'}, {"C1G",  '?'}, {"C1B", '?'}, {"C2R", '?'}, {"C2G",  '?'}, {"C2B", '?'}, {"C3R", '?'}, {"C3G",  '?'}, {"C3B", '?'} });
-		}
-		//Usage Error
-		else {
-			cout << "Usage: DPLL <filename> [-unit]" << endl;
-			exit(1);
-		}
-	}
-	//Usage Error
-	else {
-		cout << "Usage: DPLL <filename> [-unit] || [-gen]" << endl;
+	//Open the knowledge base file
+	ifstream input("marbles.cnf");
+	if (!input.is_open()) {
+		cout << "Error opening file!" << endl;
 		exit(1);
 	}
+
+	//Input each line of the knowledge base file into a vector
+	string line;
+	while (getline(input, line)) {
+		if (line.size() != 0 && line[0] != '#')
+			KB.push_back(line);
+	}
+
+	//Initial unknown model
+	model = new MODEL({ {"L1R", '?'}, {"L1G",  '?'}, {"L1B", '?'}, {"L2R", '?'}, {"L2G",  '?'}, {"L2B", '?'}, {"L3R", '?'}, {"L3G",  '?'}, {"L3B", '?'},
+						{"O1R", '?'}, {"O1G",  '?'}, {"O2R", '?'}, {"O2G",  '?'}, {"O3R", '?'}, {"O3G",  '?'},
+						{"C1R", '?'}, {"C1G",  '?'}, {"C1B", '?'}, {"C2R", '?'}, {"C2G",  '?'}, {"C2B", '?'}, {"C3R", '?'}, {"C3G",  '?'}, {"C3B", '?'} });
+
 
 	//Output initial KB
 	for (int i = 0; i < KB.size(); i++) {

@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{dd5643be-67d8-440c-975d-21ecb1013802}</ProjectGuid>
+    <ProjectGuid>{83404a6e-83c0-4b5e-b20c-ac3f2d841e54}</ProjectGuid>
     <RootNamespace>DPLL</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -139,11 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="KBgeneration.cpp" />
     <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="KBgeneration.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="marbles.cnf" />
