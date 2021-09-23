@@ -2,7 +2,7 @@
 
 This repository contains my implementation of the Davis–Putnam–Logemann–Loveland (DPLL) algorithm, which is used to decide the satisfiability of propositional logic formulas in Conjunctive Normal Form (CNF).
 
-The program uses the DPLL algorithm on a knowledge base made up of satisfiable sentences, to generate a model whose truth values are a solution to the given problem.
+The program uses the DPLL algorithm on a knowledge base made up of satisfiable sentences to generate a model whose truth values are a solution to the given problem.
 
 The knowledge base for the given problem is represented in marbles.cnf and is explained below:
   - You have 3 buckets.
